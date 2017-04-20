@@ -25,10 +25,9 @@
     </div>
     <footer>
       <button @click="moreGame">更多玩法</button>
-      <i class="iconfont icon-jia"></i>
     </footer>
     <betting v-model="goBetting"></betting>
-    <more-gameplay class="moreGame" v-model="goMore"></more-gameplay>
+    <more-gameplay class="moreGame" v-model="goMore" :btn-count="btnCount" :items="items"></more-gameplay>
   </div>
 </template>
 
@@ -45,10 +44,7 @@
        *  传递参数
        * */
       this.$emit('viewIn', {title: '加拿大28', level: 'second'})
-      this.$ajax({
-        method: 'get',
-        url: '../../../static/record/xy28msg.json'
-      }).then((data) => {
+      this.http.get('../../../static/record/xy28msg.json').then(data => {
         this.messageList = data.data
       })
     },
@@ -56,7 +52,26 @@
       return {
         goBetting: false,
         goMore: true,
-        messageList: []
+        messageList: [],
+        btnCount: [
+          {first: '大', second: '2.00'},
+          {first: '小', second: '2.00'},
+          {first: '单', second: '2.00'},
+          {first: '双', second: '2.00'},
+          {first: '小双', second: '4.00'},
+          {first: '大双', second: '4.00'},
+          {first: '大单', second: '4.00'},
+          {first: '小单', second: '4.00'},
+          {first: '极大', second: '4.00'},
+          {first: '极小', second: '12.00'}
+        ],
+        items: [
+          {gameClass: '混合', ischange: false, isActive: true},
+          {gameClass: '豹子', ischange: false, isActive: true},
+          {gameClass: '特码', ischange: false, isActive: true},
+          {gameClass: '特码三包', ischange: false, isActive: true},
+          {gameClass: '波色', ischange: false, isActive: true}
+        ]
       }
     },
     methods: {
@@ -82,16 +97,17 @@
     overflow: hidden;
     font-size: 0.11rem;
     position: relative;
+    margin-top: -0.45rem;
   }
 
   .firstFloor {
-    margin-top: 0.65rem;
     overflow: hidden;
     width: 100%;
     height: 0.6rem;
     background: #fff;
     border-bottom: 0.01rem solid #d9d9d9;
     position: relative;
+    margin-top: 0.45rem;
   }
 
   .firstFloor p {
@@ -99,6 +115,7 @@
     position: relative;
   }
   .secondFloor {
+    overflow: hidden;
     width: 100%;
     height: 0.6rem;
     background: #fff;
@@ -121,7 +138,7 @@
   }
 
   .minired {
-    background: #d14b4c;
+    background: #fb3302;
     color: #fff;
     width: 0.18rem;
     height: 0.18rem;
@@ -132,7 +149,7 @@
   }
 
   .midred {
-    background: #d14b4c;
+    background: #fb3302;
     color: #fff;
     width: 0.21rem;
     height: 0.21rem;
@@ -146,7 +163,7 @@
   }
 
   .bigred {
-    background: #d14b4c;
+    background: #fb3302;
     color: #fff;
     width: 0.34rem;
     height: 0.34rem;
@@ -156,7 +173,7 @@
     font-size: 0.16rem;
     position: absolute;
     right: 0.1rem;
-    top: 0.03rem;
+    top: 0.1rem;
   }
 
   .more {
@@ -172,9 +189,8 @@
 
   .remessage {
     width: 100%;
-    background: #dcdedd;
     position: absolute;
-    top:1.9rem;
+    top:1.65rem;
     bottom: 0.5rem;
     overflow-y: scroll;
   }
@@ -252,19 +268,14 @@
   }
 
   footer button {
-    width: 2.4rem;
+    width: 90%;
     height: 0.35rem;
-    text-align: center;
-    line-height: 0.35rem;
     color: #fff;
     border-radius: 0.05rem;
-    border: 0.01rem solid #41bbf9;
-    margin-left: 0.25rem;
+    border: none;
+    margin-left: 5%;
     outline: none;
-    background: -webkit-linear-gradient(#71cafd, #0d8bca);
-    background: -o-linear-gradient(#71cafd, #0d8bca);
-    background: -moz-linear-gradient(#71cafd, #0d8bca);
-    background: linear-gradient(#71cafd, #0d8bca);
+    background: #0a9ef4;
   }
 
   footer .iconfont {

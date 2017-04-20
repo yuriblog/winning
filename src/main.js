@@ -11,7 +11,9 @@ Vue.use(Element)
 Vue.prototype.http = axios
 // 注册全局组件
 import buttonSet from '../common/button-set'
+import oqInput from '../common/oq-input'
 Vue.component('button-set', buttonSet)
+Vue.component('oq-input', oqInput)
 
 Vue.config.productionTip = false
 

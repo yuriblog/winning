@@ -3,15 +3,10 @@
     <login @addacount="addacount" v-if="isLogin"></login>
     <regist @iskey="iskey" @login="login" v-if="!isLogin"></regist>
     <div class="help">
-      <p class="other">其他登录方式</p>
-      <div class="line"></div>
+      <p class="other"><img src="../../assets/other.png" alt=""></p>
       <p class="tubiao">
-        <i style="color: blue" class="iconfont icon-QQ"></i>
-        <i style="color: green" class="iconfont icon-weixin"></i>
-      </p>
-      <p v-if="isLogin" class="footer">
-        <a>忘记密码?</a>
-        <a>联系客服</a>
+        <span><i class="iconfont icon-QQ"></i></span>
+        <span><i class="iconfont icon-weixin"></i></span>
       </p>
     </div>
     <payment @close="close" v-if="keyShow"></payment>
@@ -57,14 +52,16 @@
     font-size: 0.1rem;
     width: 100%;
     height: 100vh;
-    background: #fff;
+    background: url("../../assets/loginbg.jgp.jpg");
+    background-size: 100% 100%;
     position: relative;
     overflow: hidden;
+    margin-top: -0.45rem;
   }
 
   .help {
     width: 100%;
-    height: 2.5rem;
+    height: 1.8rem;
     position: absolute;
     bottom: 0;
   }
@@ -72,32 +69,24 @@
     width: 100%;
     text-align: center;
   }
-  .line {
+  .other img{
     width: 70%;
-    margin-left: 15%;
-    margin-top: 0.17rem;
-    border-bottom: 0.01rem solid #000;
   }
   .tubiao {
     text-align: center;
-    margin-top: 0.15rem;
   }
-  .tubiao i {
-    font-size: 0.45rem;
+  .tubiao span{
+    display: inline-block;
+    width: 0.3rem;
+    height: 0.3rem;
+    text-align: center;
+    line-height: 0.3rem;
+    border-radius: 50%;
+    border: 0.01rem solid #0a9ef4;
     margin: 0 0.4rem;
   }
-  .footer {
-    color: #39b8ff;
-    width: 100%;
-  }
-  .footer a:nth-of-type(1){
-    position: absolute;
-    left: 0.2rem;
-    bottom: 0.11rem;
-  }
-  .footer a:nth-of-type(2){
-    position: absolute;
-    right: 0.2rem;
-    bottom: 0.11rem;
+  .tubiao i {
+    font-size: 0.17rem;
+    color: #0a9ef4;
   }
 </style>

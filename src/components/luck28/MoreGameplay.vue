@@ -1,14 +1,27 @@
 <template>
   <nav :class="{active: value}">
+    <div class="top">
+      <el-row :gutter="10">
+        <el-col :span="3">&nbsp;</el-col>
+        <el-col :span="3"><img src="../../assets/50.jpg"></el-col>
+        <el-col :span="3"><img src="../../assets/100.jpg"></el-col>
+        <el-col :span="3"><img src="../../assets/200.jpg"></el-col>
+        <el-col :span="3"><img src="../../assets/500.jpg"></el-col>
+        <el-col :span="3"><img src="../../assets/1000.jpg"></el-col>
+        <el-col :span="3"><img src="../../assets/2000.jpg"></el-col>
+        <el-col :span="3">&nbsp;</el-col>
+      </el-row>
+      <p>请选择或者输入快捷下注金额 : <input type="text"></p>
+    </div>
     <ul class="moreList">
-      <li v-for="(item, $index) in items" :class="{change: item.ischange}" @click="liList(item, $index)"><a>{{item.gameClass}}</a> <span>0</span><i class="iconfont icon-shang"></i>
+      <li v-for="(item, $index) in items" :class="{change: item.ischange}" @click="liList(item, $index)"><i class="iconfont icon-1"></i><a>{{item.gameClass}}</a> <span>0</span>
         <div class="order" :class="{actived: item.isActive}">
           <button-set :btn-count="btnCount"></button-set>
         </div>
       </li>
     </ul>
     <div class="remark">
-      <span>已选 1 个注单</span> <span>共 10 币</span>
+      <span>已选 1 个注单</span><input type="text" placeholder="快捷金额"> <span>共 <a style="color: #d14b4c">10</a> 币</span>
     </div>
     <div class="btnList">
       <button>确定</button>
@@ -21,29 +34,12 @@
   import Vue from 'vue'
   export default {
     props: {
-      value: ''
+      value: '',
+      btnCount: '',
+      items: ''
     },
     data () {
       return {
-        btnCount: [
-          {first: '大', second: '2.00'},
-          {first: '小', second: '2.00'},
-          {first: '单', second: '2.00'},
-          {first: '双', second: '2.00'},
-          {first: '小双', second: '4.00'},
-          {first: '大双', second: '4.00'},
-          {first: '大单', second: '4.00'},
-          {first: '小单', second: '4.00'},
-          {first: '极大', second: '4.00'},
-          {first: '极小', second: '12.00'}
-        ],
-        items: [
-          {gameClass: '混合', ischange: false, isActive: true},
-          {gameClass: '豹子', ischange: false, isActive: true},
-          {gameClass: '特码', ischange: false, isActive: true},
-          {gameClass: '特码三包', ischange: false, isActive: true},
-          {gameClass: '波色', ischange: false, isActive: true}
-        ]
       }
     },
     methods: {
@@ -63,7 +59,7 @@
 </script>
 <style scoped>
   .order {
-    height: 1.7rem;
+    height: 1.5rem;
     width: 100%;
     background: #eaf1f9;
     padding-top: 0.08rem;
@@ -73,7 +69,26 @@
   .actived {
     display: none;
   }
-
+  .top {
+    border-bottom: 0.1rem solid #f5f5f5;
+  }
+  .top img {
+    width: 100%;
+    border-radius: 50%;
+  }
+  .top .el-row{
+    margin-top: 0.1rem;
+  }
+  .top p {
+    margin: 0.1rem 0.4rem;
+  }
+  .top p input {
+    width: 0.6rem;
+    height: 0.2rem;
+    border: 0.01rem solid #34b9fc;
+    text-align: center;
+    border-radius: 0.05rem;
+  }
   nav {
     width: 100%;
     background: #fff;
@@ -91,7 +106,14 @@
   }
 
   .remark span {
-    margin: 0 0.2rem;
+    margin: 0 0.1rem;
+  }
+  .remark input{
+    width: 0.6rem;
+    height: 0.2rem;
+    border: 0.01rem solid #34b9fc;
+    text-align: center;
+    border-radius: 0.05rem;
   }
 
   .btnList {
@@ -105,41 +127,34 @@
     color: #fff;
     height: 0.35rem;
     border: none;
+    background: #0a9ef4;
+    box-sizing: border-box;
   }
 
   .btnList button:nth-of-type(1) {
-    background: #3969d7;
-  }
-
-  .btnList button:nth-of-type(2) {
-    background: #dc4e40;
+    border-right: 0.01rem solid #8cd2ff;
   }
 
   .moreList {
     width: 100%;
+    max-height: 3.2rem;
+    overflow-y: scroll;
   }
 
   .moreList li {
     width: 100%;
-    line-height: 0.25rem;
+    line-height: 0.3rem;
     font-size: 0.12rem;
     margin: 0.01rem 0;
-    color: #5e98b0;
+    color: #000;
     position: relative;
-    background: -webkit-linear-gradient(left, #a1dff6, #cae9fd);
-    background: -o-linear-gradient(left, #a1dff6, #cae9fd);
-    background: -moz-linear-gradient(left, #a1dff6, #cae9fd);
-    background: linear-gradient(left, #a1dff6, #cae9fd);
+    background: #fff;
+    border-bottom: 0.01rem solid #f5f5f5;
   }
   .moreList li.change{
-    color: #fff;
-    background: -webkit-linear-gradient(left, #2aa8f2, #b196e7);
-    background: -o-linear-gradient(left, #2aa8f2, #b196e7);
-    background: -moz-linear-gradient(left, #2aa8f2, #b196e7);
-    background: linear-gradient(left, #2aa8f2, #b196e7);
   }
   .moreList li.change i{
-    transform: rotate(180deg);
+    transform: rotate(0deg);
   }
   .moreList li a {
     margin-left: 0.07rem;
@@ -155,11 +170,15 @@
     color: #fff;
     background: #3f7896;
     margin-left: 0.08rem;
+    position: absolute;
+    right: 0.1rem;
+    top:0.1rem;
   }
 
   .moreList li i {
-    position: absolute;
-    right: 0.12rem;
+    display: inline-block;
+    transform: rotate(-90deg);
+    color: #b9b9b9;
   }
 
 </style>

@@ -6,12 +6,13 @@ import { Loading, Message } from 'element-ui'
 // 超时时间
 axios.defaults.timeout = 5000
 // http请求拦截器
+var loadinginstace
 axios.interceptors.request.use(config => {
   // element ui Loading方法
-  Loading.service({ fullscreen: true })
+  loadinginstace = Loading.service({ fullscreen: true })
   return config
 }, error => {
-  Loading.service({ fullscreen: true }).close()
+  loadinginstace.close()
   Message.error({
     message: '加载超时'
   })
@@ -19,10 +20,10 @@ axios.interceptors.request.use(config => {
 })
 // http响应拦截器
 axios.interceptors.response.use(data => {
-  Loading.service({ fullscreen: true }).close()
+  loadinginstace.close()
   return data
 }, error => {
-  Loading.service({ fullscreen: true }).close()
+  loadinginstace.close()
   Message.error({
     message: '加载失败'
   })

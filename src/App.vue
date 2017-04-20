@@ -85,11 +85,17 @@
 
 <style>
   .mainWrap {
+    height: 100vh;
+    padding-top:0.45rem;
+    box-sizing: border-box;
     width: 100%;
+    background: #f5f5f5;
+    font-size: 0.1rem;
+    overflow-x: hidden;
   }
 
   header {
-    height: 0.65rem;
+    height: 0.45rem;
     width: 100%;
     background: #39b8ff;
     position: fixed;
@@ -103,18 +109,17 @@
 
   header ul {
     display: flex;
+    height: 0.45rem;
+    line-height: 0.45rem;
   }
 
   header ul li {
     flex: 1;
     color: #fff;
     text-align: center;
-    list-style: none;
-    font-size: 0.2rem;
-    margin-top: 0.3rem;
+    font-size: 0.16rem;
     margin-right: 0.15rem;
     margin-left: 0.15rem;
-    line-height: 0.25rem;
   }
 
   header ul li:nth-of-type(1) {
@@ -128,7 +133,7 @@
   footer {
     width: 100%;
     height: 0.5rem;
-    background: #f2f2f2;
+    background: #fff;
     position: fixed;
     bottom: 0;
   }
@@ -164,12 +169,16 @@
 
   .el-dialog {
     border-radius: 0.12rem !important;
-    border: 0.03rem solid #3bb6ff;
-    background: #f1fcff;
+    background: #ebf8ff;
     overflow: hidden;
   }
 
   .el-dialog__header {
     display: none;
+  }
+  .top .el-input__inner{
+    width: 100vw !important;
+    border: none !important;
+    border-radius: 0 !important;
   }
 </style>

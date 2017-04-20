@@ -43,13 +43,13 @@
       <button @click="moreGame">冠亚和</button>
       <i class="iconfont icon-jia"></i>
     </footer>
-    // 组建传递参数用v-bind方式
-    <more-gameplay class="moreGame" v-model="goMore" :items="items"></more-gameplay>
+   <!--  组建传递参数用v-bind方式-->
+    <more-gameplay class="moreGame" v-model="goMore" :btn-count="btnCount" :items="items"></more-gameplay>
   </div>
 </template>
 
 <script>
-  import MoreGameplay from '../chongqing/MoreGameplay'
+  import MoreGameplay from '../luck28/MoreGameplay'
   export default {
     name: 'Racing',
     components: {
@@ -61,22 +61,34 @@
     data () {
       return {
         styleobj: {
-          top: '1.86rem'
+          top: '1.66rem'
         },
         isVideo: false,
         goMore: true,
         openClose: '开奖视频',
+        btnCount: [
+          {first: '大', second: '2.00'},
+          {first: '小', second: '2.00'},
+          {first: '单', second: '2.00'},
+          {first: '双', second: '2.00'},
+          {first: '小双', second: '4.00'},
+          {first: '大双', second: '4.00'},
+          {first: '大单', second: '4.00'},
+          {first: '小单', second: '4.00'},
+          {first: '极大', second: '4.00'},
+          {first: '极小', second: '12.00'}
+        ],
         items: [
-          {kind: '冠军', isActive: true},
-          {kind: '亚军', isActive: false},
-          {kind: '季军', isActive: false},
-          {kind: '第四名', isActive: false},
-          {kind: '第五名', isActive: false},
-          {kind: '第六名', isActive: false},
-          {kind: '第七名', isActive: false},
-          {kind: '第八名', isActive: false},
-          {kind: '第九名', isActive: false},
-          {kind: '第十名', isActive: false}
+          {gameClass: '冠军', ischange: false, isActive: true},
+          {gameClass: '亚军', ischange: false, isActive: true},
+          {gameClass: '季军', ischange: false, isActive: true},
+          {gameClass: '第四名', ischange: false, isActive: true},
+          {gameClass: '第五名', ischange: false, isActive: true},
+          {gameClass: '第六名', ischange: false, isActive: true},
+          {gameClass: '第七名', ischange: false, isActive: true},
+          {gameClass: '第八名', ischange: false, isActive: true},
+          {gameClass: '第九名', ischange: false, isActive: true},
+          {gameClass: '第十名', ischange: false, isActive: true}
         ]
       }
     },
@@ -87,11 +99,11 @@
       openVideo () {
         if (this.isVideo) {
           this.isVideo = false
-          this.styleobj.top = '1.86rem'
+          this.styleobj.top = '1.66rem'
           this.openClose = '开奖视频'
         } else {
           this.isVideo = true
-          this.styleobj.top = '3.3rem'
+          this.styleobj.top = '3.1rem'
           this.openClose = '关闭视频'
         }
       }
@@ -100,7 +112,7 @@
 </script>
 <style scoped>
   .lotvideo {
-    margin-top: 0.65rem;
+    margin-top: 0.45rem;
     width: 100%;
     height: 2.05rem;
     background: #000;
@@ -119,10 +131,11 @@
     overflow: hidden;
     font-size: 0.11rem;
     position: relative;
+    margin-top: -0.45rem;
   }
 
   .firstFloor {
-    margin-top: 0.65rem;
+    margin-top: 0.45rem;
     overflow: hidden;
     width: 100%;
     height: 0.6rem;
@@ -139,6 +152,7 @@
     width: 100%;
     height: 0.6rem;
     background: #fff;
+    overflow: hidden;
     border-bottom: 0.01rem solid #d9d9d9;
     position: relative;
   }
@@ -159,7 +173,7 @@
   }
 
   .minired {
-    background: #d14b4c;
+    background: #ff3301;
     color: #fff;
     width: 0.18rem;
     height: 0.18rem;
@@ -170,7 +184,7 @@
   }
 
   .midred {
-    background: #d14b4c;
+    background: #ff3301;
     color: #fff;
     width: 0.21rem;
     height: 0.21rem;
@@ -184,7 +198,7 @@
   }
 
   .bigred {
-    background: #d14b4c;
+    background: #ff3301;
     color: #fff;
     width: 0.55rem;
     height: 0.27rem;
@@ -193,7 +207,7 @@
     border-radius: 0.05rem;
     position: absolute;
     right: 0.1rem;
-    top: 0.1rem;
+    top: 0.2rem;
   }
 
   .more {
@@ -296,10 +310,7 @@
     border: 0.01rem solid #41bbf9;
     border-radius: 0.05rem;
     outline: none;
-    background: -webkit-linear-gradient(#71cafd, #0d8bca);
-    background: -o-linear-gradient(#71cafd, #0d8bca);
-    background: -moz-linear-gradient(#71cafd, #0d8bca);
-    background: linear-gradient(#71cafd, #0d8bca);
+    background: #0a9ef4;
   }
 
   footer .iconfont {

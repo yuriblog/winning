@@ -8,9 +8,9 @@
       </ul>
     </nav>
     <div class="info">
-      <p><i class="iconfont icon-yonghu"></i><input type="text" placeholder="请输入用户名"></p>
-      <p><i class="iconfont icon-mima"></i><input type="text" placeholder="请输入登录密码"></p>
-      <p><i class="iconfont icon-mima"></i><input type="text" placeholder="请确认登录密码"></p>
+      <p><i class="iconfont icon-yonghu"></i><oq-input ref="childthree" v-model="username" placeholder="请输入用户名"></oq-input></p>
+      <p><i class="iconfont icon-mima1"></i><oq-input ref="childfour" v-model="psw" namekind="pwd" placeholder="请输入登录密码"></oq-input></p>
+      <p><i class="iconfont icon-mima1"></i><oq-input ref="childfive" v-model="ensurepsw" :firstpsw="psw" namekind="ensurepwd" placeholder="请确认登录密码"></oq-input></p>
 
       <button @click="success" class="log">点击注册</button>
     </div>
@@ -20,7 +20,11 @@
 <script type="text/ecmascript-6">
   export default {
     data () {
-      return {}
+      return {
+        username: '',
+        psw: '',
+        ensurepsw: ''
+      }
     },
     methods: {
       cancel () {
@@ -30,7 +34,12 @@
         this.$emit('login')
       },
       success () {
-        this.$emit('iskey')
+        this.$refs.childthree.submit()
+        this.$refs.childfour.submit()
+        this.$refs.childfive.submit()
+        if (this.$refs.childthree.verify && this.$refs.childfour.verify && this.$refs.childfive.verify) {
+          this.$emit('iskey')
+        }
       }
     }
   }
@@ -38,20 +47,21 @@
 
 <style scoped>
   .log {
-    width: 80%;
-    height: 0.35rem;
-    margin-left: 10%;
-    margin-top: 0.1rem;
-    background: #fff;
-    border-radius: 0.05rem;
-    border: 0.01rem solid #000;
+    width: 100%;
+    height: 0.3rem;
+    background: #39b8ff;
+    border: none;
+    outline: none;
+    border-radius: 0.15rem;
+    color: #fff;
+    margin-top: 0.35rem;
   }
   .head {
-    background: #fff;
-    height: 0.5rem;
-    line-height: 0.5rem;
+    height: 0.45rem;
     width: 100%;
-    border-bottom: 0.01rem solid #cfcfcf;
+    background: #39b8ff;
+    color: #fff;
+    line-height: 0.45rem;
   }
   .head ul{
     width: 100%;
@@ -70,24 +80,33 @@
     height: 0.7rem;
   }
   .info {
-    width: 90%;
-    margin-left: 5%;
-    margin-top: 0.15rem;
+    width: 70%;
+    margin-top: 0.6rem;
+    margin-left: 15%;
+    overflow: hidden;
   }
   .info p{
     position: relative;
     width: 100%;
+    margin-top: 0.25rem;
   }
   .info p i{
-    position: absolute;
-    top:0.06rem;
+    color: #fff;
+    font-size: 0.23rem;
   }
   .info p input {
     width: 100%;
+    position: absolute;
+    left: 0.28rem;
     border: none;
-    margin: 0.1rem 0;
-    border-bottom: 0.01rem solid #cfcfcf;
-    padding-left: 0.18rem;
+    line-height: 0.25rem;
+    border-bottom: 0.01rem solid #fff;
+    padding-left: 0.1rem;
     box-sizing: border-box;
+    background: rgba(0,0,0,0);
+    color: #fff;
+  }
+  .info p input::-webkit-input-placeholder{
+    color: #fff;
   }
 </style>

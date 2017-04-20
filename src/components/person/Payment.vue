@@ -1,5 +1,6 @@
 <template>
   <div class="pay_wrap">
+    <div class="pay_content">
     <p class="paytitle">{{paytitle}}</p>
     <ul class="password">
       <li v-for="item in items">{{item}}</li>
@@ -22,6 +23,7 @@
         <el-col :span="8"><span @click="del"><i class="iconfont icon-shanjianyiwei2"></i></span></el-col>
       </el-row>
     </div>
+  </div>
   </div>
 </template>
 
@@ -56,7 +58,18 @@
           this.items.length = 6
         }
         if (this.pswList.length === 12) {
-          this.$emit('close')
+          this.pswList.forEach((item, index, arr) => {
+            console.log(index)
+            if (index <= 5 && item !== arr[index + 6]) {
+              this.$message.error('两次密码不一致,请重新输入')
+              this.items = []
+              this.items.length = 6
+              this.pswList = []
+            } else if (index === 5) {
+              this.$emit('close')
+              return
+            }
+          })
         }
       }
     }
@@ -65,6 +78,13 @@
 
 <style scoped>
   .pay_wrap {
+    width: 100%;
+    height: 100vh;
+    background: rgba(0,0,0,0.2);
+    position: absolute;
+    top:0;
+  }
+  .pay_content {
     position: absolute;
     bottom: 0;
     width: 100%;

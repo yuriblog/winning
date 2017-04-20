@@ -17,9 +17,9 @@
       </div>
       <div class="swiper-pagination"></div>
     </div>
-    <p class="message">
-      <i class="iconfont icon-tongzhi"></i>
-      <span>恭喜XXX幸运28中1200个币</span>
+    <p class="prize">
+      <i style="color: #5accff" class="iconfont icon-tongzhi"></i>
+      <span v-for="item in winList" :class="{active: item.isActive}">{{item.message}}</span>
     </p>
     <nav class="picclass">
       <ul>
@@ -69,6 +69,9 @@
       this.$emit('viewIn', {title: '首页', level: 'first'})
     },
     mounted () {
+      this.http.get('../../static/record/Winning.json').then(data => {
+        this.winList = data.data
+      })
       Swiper('.swiper-container', {
         pagination: '.swiper-pagination',
         spaceBetween: 15,
@@ -79,6 +82,7 @@
     },
     data () {
       return {
+        winList: []
       }
     }
   }
@@ -87,9 +91,7 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   .wrap {
-    margin-top: 0.65rem;
-    margin-bottom: 0.5rem;
-    overflow: hidden;
+    width: 100%;
   }
   .carousel {
     height: 1.65rem;
@@ -99,18 +101,33 @@
     width: 100%;
     height: 100%;
   }
-  .message {
+  .prize {
     width: 100%;
     height: 0.3rem;
-    background: #e8eff5;
     line-height: 0.3rem;
+    background: #e8eff5;
     font-size: 0.1rem;
     padding-left: 0.15rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .prize span{
+    position: absolute;
+    top:100%;
+  }
+  .prize span.active{
+    transform: translateY(-100%);
+  }
+  .prize i{
+    margin-right: 0.1rem;
   }
   .picclass {
     overflow: hidden;
     width: 100%;
-    margin-top: 0.05rem;
+    margin-top: 0.15rem;
+  }
+  .picclass ul li{
+    margin-top: 0.1rem;
   }
   .picclass ul li img {
     width: 0.94rem;

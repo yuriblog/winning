@@ -73,10 +73,10 @@
     width: 100%;
   }
   .ensure {
-    background: #3969d7;
+    background: #118acf;
   }
   .cancel {
-    background: #dc4e40;
+    background: #0a9ef4;
   }
   .foot button {
     float: left;

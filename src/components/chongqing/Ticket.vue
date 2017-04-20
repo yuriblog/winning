@@ -6,7 +6,7 @@
     <div class="secondFloor">
       <p>当前 : <span style="color: #4ea2f4">064期</span> 距离封盘还有 <span style="color: #d14b4c">2分39秒</span></p>
       <p>本期投注 : 0币,账户余额0.00币</p>
-      <div class="bigred">投</div>
+      <div class="bigred">开奖视频</div>
     </div>
     <div class="remessage">
       <div class="oneMessage">
@@ -32,15 +32,14 @@
       <p class="count">还有30秒封盘</p>
     </div>
     <footer>
-      <button @click="moreGame">更多玩法</button>
-      <i class="iconfont icon-jia"></i>
+      <button @click="moreGame">投 注</button>
     </footer>
-    <more-gameplay class="moreGame" v-model="goMore" :items="items"></more-gameplay>
+    <more-gameplay class="moreGame" v-model="goMore" :btn-count="btnCount" :items="items"></more-gameplay>
   </div>
 </template>
 
 <script>
-  import MoreGameplay from './MoreGameplay'
+  import MoreGameplay from '../luck28/MoreGameplay'
   export default {
     name: 'Ticket',
     components: {
@@ -56,20 +55,32 @@
       return {
         goBetting: false,
         goMore: true,
+        btnCount: [
+          {first: '大', second: '2.00'},
+          {first: '小', second: '2.00'},
+          {first: '单', second: '2.00'},
+          {first: '双', second: '2.00'},
+          {first: '小双', second: '4.00'},
+          {first: '大双', second: '4.00'},
+          {first: '大单', second: '4.00'},
+          {first: '小单', second: '4.00'},
+          {first: '极大', second: '4.00'},
+          {first: '极小', second: '12.00'}
+        ],
         items: [
-          {kind: '整合', isActive: true},
-          {kind: '万位', isActive: false},
-          {kind: '千位', isActive: false},
-          {kind: '百位', isActive: false},
-          {kind: '个位', isActive: false},
-          {kind: '和尾数', isActive: false},
-          {kind: '龙虎斗', isActive: false},
-          {kind: '棋牌', isActive: false},
-          {kind: '和数', isActive: false},
-          {kind: '一字', isActive: false},
-          {kind: '组选三', isActive: false},
-          {kind: '组选六', isActive: false},
-          {kind: '跨度', isActive: false}
+          {gameClass: '整合', ischange: false, isActive: true},
+          {gameClass: '万位', ischange: false, isActive: true},
+          {gameClass: '千位', ischange: false, isActive: true},
+          {gameClass: '百位', ischange: false, isActive: true},
+          {gameClass: '个位', ischange: false, isActive: true},
+          {gameClass: '和尾数', ischange: false, isActive: true},
+          {gameClass: '龙虎斗', ischange: false, isActive: true},
+          {gameClass: '棋牌', ischange: false, isActive: true},
+          {gameClass: '和数', ischange: false, isActive: true},
+          {gameClass: '一字', ischange: false, isActive: true},
+          {gameClass: '组选三', ischange: false, isActive: true},
+          {gameClass: '组选六', ischange: false, isActive: true},
+          {gameClass: '跨度', ischange: false, isActive: true}
         ]
       }
     },
@@ -93,10 +104,11 @@
     overflow: hidden;
     font-size: 0.11rem;
     position: relative;
+    margin-top: -0.45rem;
   }
 
   .firstFloor {
-    margin-top: 0.65rem;
+    margin-top: 0.45rem;
     overflow: hidden;
     width: 100%;
     height: 0.4rem;
@@ -112,6 +124,7 @@
   .secondFloor {
     width: 100%;
     height: 0.6rem;
+    overflow: hidden;
     background: #fff;
     border-bottom: 0.01rem solid #d9d9d9;
     position: relative;
@@ -158,17 +171,16 @@
   }
 
   .bigred {
-    background: #d14b4c;
+    background: #ff3301;
     color: #fff;
-    width: 0.34rem;
-    height: 0.34rem;
-    line-height: 0.34rem;
+    width: 0.55rem;
+    height: 0.27rem;
+    line-height: 0.27rem;
     text-align: center;
-    border-radius: 50%;
-    font-size: 0.16rem;
+    border-radius: 0.05rem;
     position: absolute;
     right: 0.1rem;
-    top: 0.03rem;
+    top: 0.2rem;
   }
 
   .more {
@@ -186,7 +198,7 @@
     width: 100%;
     background: #dcdedd;
     position: absolute;
-    top:1.7rem;
+    top:1.45rem;
     bottom: 0.5rem;
     overflow-y: scroll;
   }
@@ -265,19 +277,14 @@
   }
 
   footer button {
-    width: 2.4rem;
+    width: 90%;
     height: 0.35rem;
-    text-align: center;
-    line-height: 0.35rem;
     color: #fff;
     border-radius: 0.05rem;
-    border: 0.01rem solid #41bbf9;
-    margin-left: 0.25rem;
+    border: none;
+    margin-left: 5%;
     outline: none;
-    background: -webkit-linear-gradient(#71cafd, #0d8bca);
-    background: -o-linear-gradient(#71cafd, #0d8bca);
-    background: -moz-linear-gradient(#71cafd, #0d8bca);
-    background: linear-gradient(#71cafd, #0d8bca);
+    background: #0a9ef4;
   }
 
   footer .iconfont {

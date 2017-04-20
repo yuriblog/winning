@@ -3,7 +3,7 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   routes: [
     {
       path: '/',
@@ -28,6 +28,9 @@ export default new Router({
     }, {
       path: '/Luck',
       name: 'Luck',
+      meta: {
+        requireAuth: true
+      },
       component: (resolve) => {
         require(['../components/luck28/Luck'], resolve)
       }
@@ -61,6 +64,98 @@ export default new Router({
       component: (resolve) => {
         require(['../components/person/RegisterLogin'], resolve)
       }
+    }, {
+      path: '/Recharge',
+      name: 'Recharge',
+      meta: {
+        requireAuth: true
+      },
+      component: (resolve) => {
+        require(['../components/my-info/Recharge'], resolve)
+      }
+    }, {
+      path: '/CardRecharge',
+      name: 'CardRecharge',
+      component: (resolve) => {
+        require(['../components/my-info/CardRecharge'], resolve)
+      }
+    }, {
+      path: '/BettingManage',
+      name: 'BettingManage',
+      meta: {
+        requireAuth: true
+      },
+      component: (resolve) => {
+        require(['../components/my-info/BettingManage'], resolve)
+      }
+    }, {
+      path: '/Financial',
+      name: 'Financial',
+      meta: {
+        requireAuth: true
+      },
+      component: (resolve) => {
+        require(['../components/my-info/Financial'], resolve)
+      }
+    }, {
+      path: '/Setting',
+      name: 'Setting',
+      component: (resolve) => {
+        require(['../components/person/Setting'], resolve)
+      }
+    }, {
+      path: '/UserData',
+      name: 'UserData',
+      meta: {
+        requireAuth: true
+      },
+      component: (resolve) => {
+        require(['../components/person/UserData'], resolve)
+      }
+    }, {
+      path: '/Invite',
+      name: 'Invite',
+      meta: {
+        requireAuth: true
+      },
+      component: (resolve) => {
+        require(['../components/my-info/InviteFriend'], resolve)
+      }
+    }, {
+      path: '/Withdraw',
+      name: 'Withdraw',
+      meta: {
+        requireAuth: true
+      },
+      component: (resolve) => {
+        require(['../components/my-info/Withdraw'], resolve)
+      }
+    }, {
+      path: '/BankCard',
+      name: 'BankCard',
+      meta: {
+        requireAuth: true
+      },
+      component: (resolve) => {
+        require(['../components/my-info/BankCard'], resolve)
+      }
     }
   ]
 })
+//  判断是否需要登录权限 以及是否登录
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(res => res.meta.requireAuth)) {
+    if (localStorage.getItem('username')) {
+      next()
+    } else {
+      next({
+        path: '/Register',
+        query: {redirect: to.fullPath}
+      })
+    }
+  } else {
+    next()
+  }
+})
+
+export default router

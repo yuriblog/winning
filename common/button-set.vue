@@ -70,21 +70,20 @@
     width: 45%;
     height: 0.26rem;
     color: #fff;
-    border: 0.01rem solid #3e9def;
+    border: none;
     float: left;
     outline: none;
-    background: -webkit-linear-gradient(#9ccffe, #47aeff);
-    background: -o-linear-gradient(#9ccffe, #47aeff);
-    background: -moz-linear-gradient(#9ccffe, #47aeff);
-    background: linear-gradient(#9ccffe, #47aeff);
+    background: #14a2f4;
   }
   .btnSet .el-row .el-col button:nth-of-type(1),.btnSets .el-row .el-col button:nth-of-type(1){
     border-top-left-radius: 0.04rem;
     border-bottom-left-radius: 0.04rem;
+    border-right: 0.01rem solid #94d3fc;
   }
   .btnSet .el-row .el-col button:nth-of-type(2),.btnSets .el-row .el-col button:nth-of-type(2){
     border-top-right-radius: 0.04rem;
     border-bottom-right-radius: 0.04rem;
+    color: #feff00;
   }
   .btnSet .el-row,.btnSets .el-row {
     text-align: center;
